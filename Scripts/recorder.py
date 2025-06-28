@@ -1,6 +1,7 @@
 import cv2
 import datetime
 import os
+from logger import logger
 
 def start_recording(frame, base_path="videos"):
     os.makedirs(base_path, exist_ok=True)
@@ -9,4 +10,5 @@ def start_recording(frame, base_path="videos"):
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     height, width = frame.shape[:2]
     out = cv2.VideoWriter(filename, fourcc, 20.0, (width, height))
+    logger.info(f"Iniciando gravação: {filename}")
     return out, filename
